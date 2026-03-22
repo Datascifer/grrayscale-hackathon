@@ -1,320 +1,216 @@
 import React from 'react';
 
-export const fitFinDesignTokens = {
-  brand: {
-    name: 'FitFin',
-    mission: 'Help people build healthy money habits with the clarity, energy, and consistency of a strong fitness routine.',
-    personality: ['focused', 'encouraging', 'trustworthy', 'modern'],
+const colorTokens = [
+  {
+    name: 'fitness',
+    value: '#10B981',
+    usage: 'Primary coaching actions, progress states, and positive momentum.',
+    swatchClassName: 'bg-fitness text-white',
   },
-  colors: {
-    ink: '#0F172A',
-    slate: '#334155',
-    cloud: '#E2E8F0',
-    mist: '#F8FAFC',
-    emerald: '#10B981',
-    mint: '#D1FAE5',
-    sky: '#0EA5E9',
-    blueTint: '#E0F2FE',
-    amber: '#F59E0B',
-    amberTint: '#FEF3C7',
-    rose: '#F43F5E',
-    roseTint: '#FFE4E6',
+  {
+    name: 'finance',
+    value: '#6366F1',
+    usage: 'Secondary actions, charts, and linked-account highlights.',
+    swatchClassName: 'bg-finance text-white',
   },
-  typography: {
-    display: '700 48px/56px Inter, system-ui, sans-serif',
-    heading: '700 32px/40px Inter, system-ui, sans-serif',
-    title: '600 24px/32px Inter, system-ui, sans-serif',
-    body: '400 16px/24px Inter, system-ui, sans-serif',
-    caption: '500 14px/20px Inter, system-ui, sans-serif',
-    mono: '500 14px/20px "SFMono-Regular", Consolas, monospace',
+  {
+    name: 'risk-high',
+    value: '#F43F5E',
+    usage: 'Overspending alerts, destructive flows, and urgent debt messaging.',
+    swatchClassName: 'bg-risk-high text-white',
   },
-  spacing: {
-    xs: 4,
-    sm: 8,
-    md: 16,
-    lg: 24,
-    xl: 32,
-    '2xl': 48,
+  {
+    name: 'risk-medium',
+    value: '#F59E0B',
+    usage: 'Budget cautions, pending reminders, and attention states.',
+    swatchClassName: 'bg-risk-medium text-slate-950',
   },
-  radii: {
-    sm: 8,
-    md: 14,
-    lg: 20,
-    pill: 999,
+  {
+    name: 'surface',
+    value: '#0F172A',
+    usage: 'Application shell, full-page backgrounds, and analytics canvas.',
+    swatchClassName: 'bg-surface text-white',
   },
-  shadows: {
-    soft: '0 10px 30px rgba(15, 23, 42, 0.08)',
-    focus: '0 0 0 4px rgba(14, 165, 233, 0.2)',
+  {
+    name: 'card',
+    value: '#1E293B',
+    usage: 'Elevated panels, KPI cards, and modular content containers.',
+    swatchClassName: 'bg-card text-white',
   },
-};
+];
 
-const surfaces = [
-  {
-    name: 'Primary',
-    value: fitFinDesignTokens.colors.emerald,
-    usage: 'Primary actions, positive balances, and progress states.',
-    textColor: '#FFFFFF',
-  },
-  {
-    name: 'Secondary',
-    value: fitFinDesignTokens.colors.sky,
-    usage: 'Charts, links, and supporting calls to action.',
-    textColor: '#FFFFFF',
-  },
-  {
-    name: 'Success tint',
-    value: fitFinDesignTokens.colors.mint,
-    usage: 'Low-emphasis celebration and success surfaces.',
-    textColor: fitFinDesignTokens.colors.ink,
-  },
-  {
-    name: 'Warning tint',
-    value: fitFinDesignTokens.colors.amberTint,
-    usage: 'Budget alerts and caution messaging.',
-    textColor: fitFinDesignTokens.colors.ink,
-  },
-  {
-    name: 'Danger tint',
-    value: fitFinDesignTokens.colors.roseTint,
-    usage: 'Overspending flags and destructive states.',
-    textColor: fitFinDesignTokens.colors.ink,
-  },
+const typographyTokens = [
+  { name: 'display', className: 'text-display', sample: 'Build healthy money momentum.' },
+  { name: 'heading', className: 'text-heading', sample: 'Goals, streaks, and financial confidence.' },
+  { name: 'title', className: 'text-title', sample: 'Title styles for cards and sections.' },
+  { name: 'body', className: 'text-body', sample: 'Body copy supports product education and next steps.' },
+  { name: 'caption', className: 'text-caption', sample: 'Caption styles clarify labels and metadata.' },
+];
+
+const spacingTokens = [
+  { name: 'xs', widthClassName: 'w-4', value: '4px / 0.25rem' },
+  { name: 'sm', widthClassName: 'w-8', value: '8px / 0.5rem' },
+  { name: 'md', widthClassName: 'w-16', value: '16px / 1rem' },
+  { name: 'lg', widthClassName: 'w-24', value: '24px / 1.5rem' },
+  { name: 'xl', widthClassName: 'w-32', value: '32px / 2rem' },
+  { name: '2xl', widthClassName: 'w-48', value: '48px / 3rem' },
+];
+
+const radiusTokens = [
+  { name: 'sm', className: 'rounded-sm' },
+  { name: 'md', className: 'rounded-md' },
+  { name: 'lg', className: 'rounded-lg' },
+  { name: 'pill', className: 'rounded-pill' },
+];
+
+const shadowTokens = [
+  { name: 'soft', className: 'shadow-soft', description: 'Default elevated panel shadow.' },
+  { name: 'focus', className: 'shadow-focus', description: 'Accessible focus ring treatment for interactive elements.' },
 ];
 
 const principles = [
-  'Show financial momentum the same way a fitness app shows streaks and progress.',
-  'Keep important actions obvious with one primary CTA per surface.',
-  'Use reassuring language and strong contrast to make money decisions feel safe.',
+  'Show financial momentum with the same clarity a fitness app uses for streaks and milestones.',
+  'Keep one primary CTA per surface so the next step feels obvious and coach-like.',
+  'Use strong contrast and supportive language to make money decisions feel safe and actionable.',
 ];
-
-const components = [
-  {
-    name: 'KPI Card',
-    description: 'Headline metric card for balances, savings streaks, or monthly spending targets.',
-    anatomy: ['Label', 'Value', 'Delta chip', 'Optional sparkline'],
-  },
-  {
-    name: 'Habit CTA Button',
-    description: 'Primary button for high-value actions like linking an account or setting a goal.',
-    anatomy: ['44px min height', 'Pill radius', 'Strong shadow on focus'],
-  },
-  {
-    name: 'Insight Banner',
-    description: 'Contextual guidance module for recommendations, reminders, and nudges.',
-    anatomy: ['Status icon', 'Title', 'Support copy', 'Inline action'],
-  },
-];
-
-const pageStyles = {
-  fontFamily: 'Inter, system-ui, sans-serif',
-  background: `linear-gradient(180deg, ${fitFinDesignTokens.colors.mist} 0%, #ffffff 100%)`,
-  color: fitFinDesignTokens.colors.ink,
-  padding: fitFinDesignTokens.spacing['2xl'],
-};
-
-const cardStyle = {
-  background: '#FFFFFF',
-  border: `1px solid ${fitFinDesignTokens.colors.cloud}`,
-  borderRadius: fitFinDesignTokens.radii.lg,
-  boxShadow: fitFinDesignTokens.shadows.soft,
-  padding: fitFinDesignTokens.spacing.lg,
-};
-
-const sectionTitleStyle = {
-  font: fitFinDesignTokens.typography.title,
-  margin: 0,
-};
-
-function Swatch({ name, value, usage, textColor }) {
-  return (
-    <div style={{ ...cardStyle, padding: fitFinDesignTokens.spacing.md }}>
-      <div
-        style={{
-          background: value,
-          borderRadius: fitFinDesignTokens.radii.md,
-          color: textColor,
-          minHeight: 96,
-          padding: fitFinDesignTokens.spacing.md,
-          display: 'flex',
-          alignItems: 'flex-end',
-          font: fitFinDesignTokens.typography.caption,
-        }}
-      >
-        {value}
-      </div>
-      <div style={{ marginTop: fitFinDesignTokens.spacing.md }}>
-        <div style={{ font: fitFinDesignTokens.typography.caption, color: fitFinDesignTokens.colors.slate }}>
-          {name}
-        </div>
-        <div style={{ font: fitFinDesignTokens.typography.body }}>{usage}</div>
-      </div>
-    </div>
-  );
-}
 
 export default function FitFinDesignSystem() {
   return (
-    <div style={pageStyles}>
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: '0 auto',
-          display: 'grid',
-          gap: fitFinDesignTokens.spacing.xl,
-        }}
-      >
-        <section style={{ ...cardStyle, padding: fitFinDesignTokens.spacing['2xl'] }}>
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: fitFinDesignTokens.spacing.sm,
-              background: fitFinDesignTokens.colors.blueTint,
-              color: fitFinDesignTokens.colors.sky,
-              borderRadius: fitFinDesignTokens.radii.pill,
-              padding: '6px 12px',
-              font: fitFinDesignTokens.typography.caption,
-              marginBottom: fitFinDesignTokens.spacing.md,
-            }}
-          >
-            FitFin design system
-          </div>
-          <h1 style={{ font: fitFinDesignTokens.typography.display, margin: 0 }}>
-            Financial wellness with the energy of a fitness coach.
-          </h1>
-          <p
-            style={{
-              font: fitFinDesignTokens.typography.body,
-              color: fitFinDesignTokens.colors.slate,
-              maxWidth: 720,
-              marginTop: fitFinDesignTokens.spacing.md,
-              marginBottom: 0,
-            }}
-          >
-            This component packages a FitFin-themed design system reference with brand intent, core visual
-            tokens, and reusable UI guidance that a product team can extend into a fuller application.
-          </p>
-        </section>
-
-        <section style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: fitFinDesignTokens.spacing.xl }}>
-          <div style={cardStyle}>
-            <h2 style={sectionTitleStyle}>Brand principles</h2>
-            <p style={{ font: fitFinDesignTokens.typography.body, color: fitFinDesignTokens.colors.slate }}>
-              {fitFinDesignTokens.brand.mission}
+    <main className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-8 px-6 py-10 text-foreground md:px-10 lg:px-12">
+      <section className="token-card overflow-hidden p-8 md:p-12">
+        <div className="token-chip bg-[#6366F126] text-finance ring-1 ring-inset ring-[#6366F166]">
+          Task 0.2 · Design Tokens and Theme
+        </div>
+        <div className="mt-6 grid gap-6 lg:grid-cols-[1.35fr_0.65fr] lg:items-end">
+          <div className="space-y-4">
+            <h1 className="max-w-4xl text-display text-white">
+              FitFin now reads from canonical theme tokens instead of inline design constants.
+            </h1>
+            <p className="max-w-3xl text-body text-muted">
+              This page documents the Tailwind and CSS-variable token system that powers the FitFin look and feel,
+              including the plan-approved colors, DM Sans typography, and shadcn/ui-friendly surface styling.
             </p>
-            <ul style={{ margin: 0, paddingLeft: 20, display: 'grid', gap: fitFinDesignTokens.spacing.sm }}>
-              {principles.map((principle) => (
-                <li key={principle} style={{ font: fitFinDesignTokens.typography.body }}>
-                  {principle}
-                </li>
-              ))}
+          </div>
+          <div className="token-card bg-surface p-5">
+            <p className="text-caption uppercase tracking-[0.2em] text-muted-foreground">Canonical sources</p>
+            <ul className="mt-4 space-y-3 text-body text-muted">
+              <li><span className="font-semibold text-white">tailwind.config.ts</span> for semantic theme keys</li>
+              <li><span className="font-semibold text-white">app/globals.css</span> for CSS variables and shared primitives</li>
+              <li><span className="font-semibold text-white">app/layout.tsx</span> for DM Sans font loading</li>
             </ul>
           </div>
+        </div>
+      </section>
 
-          <div style={cardStyle}>
-            <h2 style={sectionTitleStyle}>Voice attributes</h2>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: fitFinDesignTokens.spacing.sm, marginTop: fitFinDesignTokens.spacing.md }}>
-              {fitFinDesignTokens.brand.personality.map((trait) => (
-                <span
-                  key={trait}
-                  style={{
-                    padding: '8px 12px',
-                    borderRadius: fitFinDesignTokens.radii.pill,
-                    background: fitFinDesignTokens.colors.mint,
-                    color: fitFinDesignTokens.colors.ink,
-                    font: fitFinDesignTokens.typography.caption,
-                  }}
-                >
-                  {trait}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
+      <section className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="token-card p-8">
+          <h2 className="text-title text-white">Brand principles</h2>
+          <p className="mt-4 text-body text-muted">
+            FitFin combines the emotional clarity of a fitness coach with the trust required for financial guidance.
+          </p>
+          <ul className="mt-6 space-y-3 pl-5 text-body text-muted marker:text-fitness">
+            {principles.map((principle) => (
+              <li key={principle}>{principle}</li>
+            ))}
+          </ul>
+        </div>
 
-        <section style={{ display: 'grid', gap: fitFinDesignTokens.spacing.lg }}>
-          <h2 style={sectionTitleStyle}>Color system</h2>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
-              gap: fitFinDesignTokens.spacing.md,
-            }}
-          >
-            {surfaces.map((surface) => (
-              <Swatch key={surface.name} {...surface} />
+        <div className="token-card p-8">
+          <h2 className="text-title text-white">Voice attributes</h2>
+          <div className="mt-6 flex flex-wrap gap-3">
+            {['focused', 'encouraging', 'trustworthy', 'modern'].map((trait) => (
+              <span key={trait} className="token-chip bg-[#10B98126] text-fitness ring-1 ring-inset ring-[#10B9814D]">
+                {trait}
+              </span>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: fitFinDesignTokens.spacing.xl }}>
-          <div style={cardStyle}>
-            <h2 style={sectionTitleStyle}>Typography scale</h2>
-            <div style={{ display: 'grid', gap: fitFinDesignTokens.spacing.md, marginTop: fitFinDesignTokens.spacing.md }}>
-              {Object.entries(fitFinDesignTokens.typography).map(([token, font]) => (
-                <div key={token}>
-                  <div style={{ font, textTransform: 'capitalize' }}>{token} sample</div>
-                  <div style={{ font: fitFinDesignTokens.typography.mono, color: fitFinDesignTokens.colors.slate }}>{font}</div>
+      <section className="space-y-5">
+        <div className="flex items-center justify-between gap-4">
+          <h2 className="text-title text-white">Color system</h2>
+          <p className="text-caption text-muted-foreground">Semantic token names mirror the plan and Tailwind config.</p>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {colorTokens.map((token) => (
+            <article key={token.name} className="token-card p-4">
+              <div className={`flex min-h-28 items-end rounded-md p-4 text-caption font-semibold ${token.swatchClassName}`}>
+                {token.value}
+              </div>
+              <div className="mt-4 space-y-2">
+                <div>
+                  <p className="text-caption uppercase tracking-[0.2em] text-muted-foreground">{token.name}</p>
+                  <p className="text-body text-muted">{token.usage}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="grid gap-8 xl:grid-cols-2">
+        <div className="token-card p-8">
+          <h2 className="text-title text-white">Typography scale</h2>
+          <div className="mt-6 space-y-5">
+            {typographyTokens.map((token) => (
+              <div key={token.name} className="space-y-2 border-b border-border pb-4 last:border-b-0 last:pb-0">
+                <p className="text-caption uppercase tracking-[0.2em] text-muted-foreground">{token.name}</p>
+                <p className={`${token.className} text-white`}>{token.sample}</p>
+                <p className="font-mono text-sm text-muted-foreground">DM Sans via next/font/google</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="space-y-8">
+          <div className="token-card p-8">
+            <h2 className="text-title text-white">Spacing scale</h2>
+            <div className="mt-6 space-y-4">
+              {spacingTokens.map((token) => (
+                <div key={token.name} className="grid grid-cols-[72px_1fr] items-center gap-4">
+                  <p className="text-caption uppercase tracking-[0.2em] text-muted-foreground">{token.name}</p>
+                  <div className="flex items-center gap-4">
+                    <div className={`h-4 rounded-pill bg-finance ${token.widthClassName}`} />
+                    <span className="text-body text-muted">{token.value}</span>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div style={cardStyle}>
-            <h2 style={sectionTitleStyle}>Spacing & radius</h2>
-            <div style={{ display: 'grid', gap: fitFinDesignTokens.spacing.md, marginTop: fitFinDesignTokens.spacing.md }}>
-              {Object.entries(fitFinDesignTokens.spacing).map(([token, size]) => (
-                <div key={token} style={{ display: 'grid', gridTemplateColumns: '72px 1fr', alignItems: 'center', gap: 12 }}>
-                  <div style={{ font: fitFinDesignTokens.typography.caption, color: fitFinDesignTokens.colors.slate }}>{token}</div>
-                  <div style={{ height: 16, width: size * 4, background: fitFinDesignTokens.colors.sky, borderRadius: fitFinDesignTokens.radii.pill }} />
+          <div className="token-card p-8">
+            <h2 className="text-title text-white">Radius & shadow primitives</h2>
+            <div className="mt-6 grid gap-6 md:grid-cols-2">
+              <div>
+                <p className="text-caption uppercase tracking-[0.2em] text-muted-foreground">Radii</p>
+                <div className="mt-4 flex flex-wrap items-end gap-4">
+                  {radiusTokens.map((token) => (
+                    <div key={token.name} className="space-y-2 text-center">
+                      <div className={`h-14 w-14 border border-[#6366F166] bg-[#6366F126] ${token.className}`} />
+                      <p className="text-caption text-muted">{token.name}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
-              <div style={{ paddingTop: fitFinDesignTokens.spacing.sm, borderTop: `1px solid ${fitFinDesignTokens.colors.cloud}` }}>
-                <div style={{ font: fitFinDesignTokens.typography.caption, color: fitFinDesignTokens.colors.slate, marginBottom: fitFinDesignTokens.spacing.sm }}>
-                  Corner radii
-                </div>
-                <div style={{ display: 'flex', gap: fitFinDesignTokens.spacing.md, alignItems: 'flex-end' }}>
-                  {Object.entries(fitFinDesignTokens.radii).map(([token, radius]) => (
-                    <div key={token} style={{ textAlign: 'center' }}>
-                      <div
-                        style={{
-                          width: 56,
-                          height: 56,
-                          background: fitFinDesignTokens.colors.blueTint,
-                          borderRadius: radius,
-                          border: `1px solid ${fitFinDesignTokens.colors.sky}`,
-                        }}
-                      />
-                      <div style={{ font: fitFinDesignTokens.typography.caption, marginTop: fitFinDesignTokens.spacing.sm }}>{token}</div>
+              </div>
+
+              <div>
+                <p className="text-caption uppercase tracking-[0.2em] text-muted-foreground">Shadows</p>
+                <div className="mt-4 space-y-4">
+                  {shadowTokens.map((token) => (
+                    <div key={token.name} className="space-y-2">
+                      <div className={`rounded-lg border border-border bg-surface p-4 ${token.className}`}>
+                        <p className="text-body text-white">{token.name}</p>
+                      </div>
+                      <p className="text-caption text-muted">{token.description}</p>
                     </div>
                   ))}
                 </div>
               </div>
             </div>
           </div>
-        </section>
-
-        <section style={{ display: 'grid', gap: fitFinDesignTokens.spacing.lg }}>
-          <h2 style={sectionTitleStyle}>Core components</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: fitFinDesignTokens.spacing.md }}>
-            {components.map((component) => (
-              <div key={component.name} style={cardStyle}>
-                <div style={{ font: fitFinDesignTokens.typography.title }}>{component.name}</div>
-                <p style={{ font: fitFinDesignTokens.typography.body, color: fitFinDesignTokens.colors.slate }}>
-                  {component.description}
-                </p>
-                <ul style={{ margin: 0, paddingLeft: 20, display: 'grid', gap: fitFinDesignTokens.spacing.xs }}>
-                  {component.anatomy.map((item) => (
-                    <li key={item} style={{ font: fitFinDesignTokens.typography.caption }}>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
-    </div>
+        </div>
+      </section>
+    </main>
   );
 }
