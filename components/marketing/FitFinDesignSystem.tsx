@@ -1,9 +1,23 @@
 import React from 'react';
 
+type Surface = {
+  name: string;
+  value: string;
+  usage: string;
+  textColor: string;
+};
+
+type ComponentSpec = {
+  name: string;
+  description: string;
+  anatomy: string[];
+};
+
 export const fitFinDesignTokens = {
   brand: {
     name: 'FitFin',
-    mission: 'Help people build healthy money habits with the clarity, energy, and consistency of a strong fitness routine.',
+    mission:
+      'Help people build healthy money habits with the clarity, energy, and consistency of a strong fitness routine.',
     personality: ['focused', 'encouraging', 'trustworthy', 'modern'],
   },
   colors: {
@@ -46,9 +60,9 @@ export const fitFinDesignTokens = {
     soft: '0 10px 30px rgba(15, 23, 42, 0.08)',
     focus: '0 0 0 4px rgba(14, 165, 233, 0.2)',
   },
-};
+} as const;
 
-const surfaces = [
+const surfaces: Surface[] = [
   {
     name: 'Primary',
     value: fitFinDesignTokens.colors.emerald,
@@ -87,7 +101,7 @@ const principles = [
   'Use reassuring language and strong contrast to make money decisions feel safe.',
 ];
 
-const components = [
+const components: ComponentSpec[] = [
   {
     name: 'KPI Card',
     description: 'Headline metric card for balances, savings streaks, or monthly spending targets.',
@@ -105,14 +119,14 @@ const components = [
   },
 ];
 
-const pageStyles = {
+const pageStyles: React.CSSProperties = {
   fontFamily: 'Inter, system-ui, sans-serif',
   background: `linear-gradient(180deg, ${fitFinDesignTokens.colors.mist} 0%, #ffffff 100%)`,
   color: fitFinDesignTokens.colors.ink,
   padding: fitFinDesignTokens.spacing['2xl'],
 };
 
-const cardStyle = {
+const cardStyle: React.CSSProperties = {
   background: '#FFFFFF',
   border: `1px solid ${fitFinDesignTokens.colors.cloud}`,
   borderRadius: fitFinDesignTokens.radii.lg,
@@ -120,12 +134,12 @@ const cardStyle = {
   padding: fitFinDesignTokens.spacing.lg,
 };
 
-const sectionTitleStyle = {
+const sectionTitleStyle: React.CSSProperties = {
   font: fitFinDesignTokens.typography.title,
   margin: 0,
 };
 
-function Swatch({ name, value, usage, textColor }) {
+function Swatch({ name, value, usage, textColor }: Surface) {
   return (
     <div style={{ ...cardStyle, padding: fitFinDesignTokens.spacing.md }}>
       <div
@@ -152,7 +166,7 @@ function Swatch({ name, value, usage, textColor }) {
   );
 }
 
-export default function FitFinDesignSystem() {
+export function FitFinDesignSystem() {
   return (
     <div style={pageStyles}>
       <div
@@ -213,7 +227,14 @@ export default function FitFinDesignSystem() {
 
           <div style={cardStyle}>
             <h2 style={sectionTitleStyle}>Voice attributes</h2>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: fitFinDesignTokens.spacing.sm, marginTop: fitFinDesignTokens.spacing.md }}>
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: fitFinDesignTokens.spacing.sm,
+                marginTop: fitFinDesignTokens.spacing.md,
+              }}
+            >
               {fitFinDesignTokens.brand.personality.map((trait) => (
                 <span
                   key={trait}
@@ -247,14 +268,22 @@ export default function FitFinDesignSystem() {
           </div>
         </section>
 
-        <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: fitFinDesignTokens.spacing.xl }}>
+        <section
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: fitFinDesignTokens.spacing.xl,
+          }}
+        >
           <div style={cardStyle}>
             <h2 style={sectionTitleStyle}>Typography scale</h2>
             <div style={{ display: 'grid', gap: fitFinDesignTokens.spacing.md, marginTop: fitFinDesignTokens.spacing.md }}>
               {Object.entries(fitFinDesignTokens.typography).map(([token, font]) => (
                 <div key={token}>
                   <div style={{ font, textTransform: 'capitalize' }}>{token} sample</div>
-                  <div style={{ font: fitFinDesignTokens.typography.mono, color: fitFinDesignTokens.colors.slate }}>{font}</div>
+                  <div style={{ font: fitFinDesignTokens.typography.mono, color: fitFinDesignTokens.colors.slate }}>
+                    {font}
+                  </div>
                 </div>
               ))}
             </div>
@@ -265,12 +294,32 @@ export default function FitFinDesignSystem() {
             <div style={{ display: 'grid', gap: fitFinDesignTokens.spacing.md, marginTop: fitFinDesignTokens.spacing.md }}>
               {Object.entries(fitFinDesignTokens.spacing).map(([token, size]) => (
                 <div key={token} style={{ display: 'grid', gridTemplateColumns: '72px 1fr', alignItems: 'center', gap: 12 }}>
-                  <div style={{ font: fitFinDesignTokens.typography.caption, color: fitFinDesignTokens.colors.slate }}>{token}</div>
-                  <div style={{ height: 16, width: size * 4, background: fitFinDesignTokens.colors.sky, borderRadius: fitFinDesignTokens.radii.pill }} />
+                  <div style={{ font: fitFinDesignTokens.typography.caption, color: fitFinDesignTokens.colors.slate }}>
+                    {token}
+                  </div>
+                  <div
+                    style={{
+                      height: 16,
+                      width: size * 4,
+                      background: fitFinDesignTokens.colors.sky,
+                      borderRadius: fitFinDesignTokens.radii.pill,
+                    }}
+                  />
                 </div>
               ))}
-              <div style={{ paddingTop: fitFinDesignTokens.spacing.sm, borderTop: `1px solid ${fitFinDesignTokens.colors.cloud}` }}>
-                <div style={{ font: fitFinDesignTokens.typography.caption, color: fitFinDesignTokens.colors.slate, marginBottom: fitFinDesignTokens.spacing.sm }}>
+              <div
+                style={{
+                  paddingTop: fitFinDesignTokens.spacing.sm,
+                  borderTop: `1px solid ${fitFinDesignTokens.colors.cloud}`,
+                }}
+              >
+                <div
+                  style={{
+                    font: fitFinDesignTokens.typography.caption,
+                    color: fitFinDesignTokens.colors.slate,
+                    marginBottom: fitFinDesignTokens.spacing.sm,
+                  }}
+                >
                   Corner radii
                 </div>
                 <div style={{ display: 'flex', gap: fitFinDesignTokens.spacing.md, alignItems: 'flex-end' }}>
@@ -285,7 +334,9 @@ export default function FitFinDesignSystem() {
                           border: `1px solid ${fitFinDesignTokens.colors.sky}`,
                         }}
                       />
-                      <div style={{ font: fitFinDesignTokens.typography.caption, marginTop: fitFinDesignTokens.spacing.sm }}>{token}</div>
+                      <div style={{ font: fitFinDesignTokens.typography.caption, marginTop: fitFinDesignTokens.spacing.sm }}>
+                        {token}
+                      </div>
                     </div>
                   ))}
                 </div>
