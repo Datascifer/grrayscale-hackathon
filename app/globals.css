@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --fitness: #10B981;
+  --finance: #6366F1;
+  --risk-high: #F43F5E;
+  --risk-medium: #F59E0B;
+  --surface: #0F172A;
+  --card: #1E293B;
+  --foreground: #F8FAFC;
+  --muted: #CBD5E1;
+  --muted-foreground: #94A3B8;
+  --border: #334155;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --shadow-focus: 0 0 0 4px rgba(99, 102, 241, 0.2);
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--surface);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(99, 102, 241, 0.18), transparent 28%),
+    linear-gradient(180deg, #020617 0%, var(--surface) 38%, #020617 100%);
+  color: var(--foreground);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  ul {
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@layer components {
+  .token-card {
+    @apply rounded-lg border border-border bg-card shadow-soft backdrop-blur;
+  }
+
+  .token-chip {
+    @apply inline-flex items-center rounded-pill px-3 py-1 text-caption font-medium;
+  }
+}
